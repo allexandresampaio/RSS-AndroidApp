@@ -1,0 +1,24 @@
+<resources>
+
+    <string name="action_settings">Escolher Serviço de RSS</string>
+    <string name="app_name">RSS</string>
+    <string name="configurar">Configurar</string>
+    <string name="feed_padrao">https://g1.globo.com/dynamo/rss2.xml</string>
+
+    <string-array name="nomes_servicos_rss">
+        <item>G1</item>
+        <item>CNN</item>
+        <item>BBC</item>
+    </string-array>
+
+    <string-array name="entry_servicos_rss">
+        <item>https://g1.globo.com/dynamo/rss2.xml</item>
+        <item>https://g1.globo.com/dynamo/rss2.xml</item>
+        <item>https://g1.globo.com/dynamo/rss2.xml</item>
+    </string-array>
+
+    <string name="feed1">https://g1.globo.com/dynamo/rss2.xml</string>
+    <string name="feed2">https://g1.globo.com/dynamo/rss2.xml</string>
+    <string name="feed3">https://g1.globo.com/dynamo/rss2.xml</string>
+
+</resources>
