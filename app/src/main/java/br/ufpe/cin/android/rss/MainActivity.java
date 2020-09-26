@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         conteudoRSS = new RecyclerView(this);
         //organizando o recyclerview
         //tamanho fixo
-        conteudoRSS.setHasFixedSize(true);
+        //conteudoRSS.setHasFixedSize(true);
         //estrutura vertical
         conteudoRSS.setLayoutManager(new LinearLayoutManager(this));
 
@@ -174,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String getRssFeed(String feed) throws IOException {
         InputStream in = null;
-        String rssFeed = "";
+        String rssFeed;
         try {
             URL url = new URL(feed);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                 out.write(buffer, 0, count);
             }
             byte[] response = out.toByteArray();
-            rssFeed = new String(response, "UTF-8");
+            rssFeed = new String(response, StandardCharsets.UTF_8);
         } finally {
             if (in != null) {
                 in.close();
