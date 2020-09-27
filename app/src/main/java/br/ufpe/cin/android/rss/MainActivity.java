@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         //conteudoRSS.setHasFixedSize(true);
         //estrutura vertical
         conteudoRSS.setLayoutManager(new LinearLayoutManager(this));
-
         //conteudoRSS.setAdapter(new RssAdapter(this, noticias));
         //setContentView(conteudoRSS);
     }
