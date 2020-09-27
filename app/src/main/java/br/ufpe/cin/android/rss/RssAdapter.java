@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.prof.rssparser.Article;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -56,6 +57,10 @@ public class RssAdapter extends RecyclerView.Adapter <ItemRssViewHolder> {
         viewHolder.data.setText("Publicado em: " + noticia.getPubDate().substring(0, 22));
         //salvando o link da noticia em um textview do viewholder que vai ser invisível
         viewHolder.url.setText(noticia.getLink());
+        String url = noticias.get(i).getImage();
+        Picasso.with(context)
+                .load(url)
+                .into(viewHolder.image);
     }
 
     @Override

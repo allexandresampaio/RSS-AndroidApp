@@ -95,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_settings) {
             // User chose the "Settings" item, show the app settings UI...
-            startActivity(new Intent(this, PreferenciasActivity.class));
+            startActivity(new Intent(
+                    this, PreferenciasActivity.class));
             return true;
         } else {
                 // If we got here, the user's action was not recognized.
@@ -134,10 +135,8 @@ public class MainActivity extends AppCompatActivity {
         //pegando o valor passado na SharedPreference pra usar na execução
         p.execute(urlFeed);
     }
-
     protected void onResume() {
         super.onResume();
-
     }
 
     private String getRssFeed(String feed) throws IOException {
