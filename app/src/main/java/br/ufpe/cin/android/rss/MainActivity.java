@@ -33,9 +33,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     //private final String RSS_FEED = "https://g1.globo.com/dynamo/rss2.xml";
     private String urlFeed;
-
     private Toolbar mTopToolbar;
-
     //definindo a recyclerview
     RecyclerView conteudoRSS;
     List<Article> noticias;
@@ -45,17 +43,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         conteudoRSS = findViewById(R.id.conteudoRSS);
-
         mTopToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
-
-        //pegando botão da tela inicial para disparar activity de escolha de feed
-        /*Button b = findViewById(R.id.botaoSharedPref);
-        b.setOnClickListener(v -> startActivity(new Intent(
-                MainActivity.this,
-                PreferenciasActivity.class)));
-         */
-
         //recuperando as informações de feed padrão via sharedPreferences
         //pegando do arquivo user_preferences
         SharedPreferences preferences = getSharedPreferences
@@ -92,9 +81,8 @@ public class MainActivity extends AppCompatActivity {
         //estrutura vertical
         conteudoRSS.setLayoutManager(new LinearLayoutManager(this));
 
-        //recyclerView.setAdapter(new RssAdapter(this, noticias));
-        //setContentView(recyclerView);
-
+        //conteudoRSS.setAdapter(new RssAdapter(this, noticias));
+        //setContentView(conteudoRSS);
     }
 
     @Override
@@ -120,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         Parser p = new Parser.Builder().build();
         p.onFinish(
                 new OnTaskCompleted() {
@@ -138,9 +125,7 @@ public class MainActivity extends AppCompatActivity {
                                     setContentView(conteudoRSS);
                                 }
                         );
-
                     }
-
                     @Override
                     public void onError(Exception e) {
                         Log.e("RSS_APP",e.getMessage());
@@ -149,23 +134,6 @@ public class MainActivity extends AppCompatActivity {
         );
         //pegando o valor passado na SharedPreference pra usar na execução
         p.execute(urlFeed);
-
-        /*
-        new Thread(
-                () -> {
-                    try {
-                        String conteudo = getRssFeed(RSS_FEED);
-                        //precisa rodar de uma UI thread
-                        runOnUiThread(
-                                () -> conteudoRSS.setText(conteudo)
-                        );
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-        ).start();
-        */
     }
 
     protected void onResume() {
