@@ -18,7 +18,7 @@
     </string-array>
 
     <string name="feed1">https://g1.globo.com/dynamo/rss2.xml</string>
-    <string name="feed2">https://g1.globo.com/dynamo/rss2.xml</string>
-    <string name="feed3">https://g1.globo.com/dynamo/rss2.xml</string>
+    <string name="feed2"></string>
+    <string name="feed3"></string>
 
 </resources>
