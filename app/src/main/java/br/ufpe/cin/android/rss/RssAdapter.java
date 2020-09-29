@@ -18,7 +18,6 @@ import java.util.List;
 import static br.ufpe.cin.android.rss.R.layout.linha;
 
 public class RssAdapter extends RecyclerView.Adapter <ItemRssViewHolder> {
-
     List<Article> noticias;
     Context context;
 
@@ -57,6 +56,7 @@ public class RssAdapter extends RecyclerView.Adapter <ItemRssViewHolder> {
         viewHolder.data.setText("Publicado em: " + noticia.getPubDate().substring(0, 22));
         //salvando o link da noticia em um textview do viewholder que vai ser invisível
         viewHolder.url.setText(noticia.getLink());
+        //usando a biblioteca Picasso para obter as imagens anexadas as noticias e exebi-las no layout
         String url = noticias.get(i).getImage();
         Picasso.with(context)
                 .load(url)

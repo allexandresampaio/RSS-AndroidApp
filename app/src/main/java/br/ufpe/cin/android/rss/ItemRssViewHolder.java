@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
-
+//o holder guarda as referências para os objetos
 public class ItemRssViewHolder extends RecyclerView.ViewHolder {
     TextView titulo = null;
     //criando novas variáveis para armazenar os dados novos de exibição na tela

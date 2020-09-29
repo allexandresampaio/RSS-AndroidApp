@@ -45,6 +45,17 @@ public class MainActivity extends AppCompatActivity {
         conteudoRSS = findViewById(R.id.conteudoRSS);
         mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mTopToolbar);
+
+        //instanciando a recyclerview no contexto atual
+        conteudoRSS = new RecyclerView(this);
+        //organizando o recyclerview
+        //tamanho fixo
+        //conteudoRSS.setHasFixedSize(true);
+        //estrutura vertical
+        conteudoRSS.setLayoutManager(new LinearLayoutManager(this));
+        //conteudoRSS.setAdapter(new RssAdapter(this, noticias));
+        //setContentView(conteudoRSS);
+
         //recuperando as informações de feed padrão via sharedPreferences
         //pegando do arquivo user_preferences
         SharedPreferences preferences = getSharedPreferences
@@ -73,15 +84,6 @@ public class MainActivity extends AppCompatActivity {
         //se nao tiver nada salvo, ele cria e seta com o segundo argumento
         //urlFeed = prefs.toString();
 
-        //instanciando a recyclerview no contexto atual
-        conteudoRSS = new RecyclerView(this);
-        //organizando o recyclerview
-        //tamanho fixo
-        //conteudoRSS.setHasFixedSize(true);
-        //estrutura vertical
-        conteudoRSS.setLayoutManager(new LinearLayoutManager(this));
-        //conteudoRSS.setAdapter(new RssAdapter(this, noticias));
-        //setContentView(conteudoRSS);
     }
 
     @Override
