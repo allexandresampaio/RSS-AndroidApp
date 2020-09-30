@@ -51,7 +51,6 @@ public class RssAdapter extends RecyclerView.Adapter <ItemRssViewHolder> {
         Article noticia = noticias.get(i);
         //definindo os campos a serem exibidos na tela: titulo, imagem e data da publicação
         viewHolder.titulo.setText(noticia.getTitle());
-        //viewHolder.image.setImageURI(Uri.parse(noticia.getImage()));
         //customizei a exibição para fazer a data ficar melhor de ser lida, com uma substring
         viewHolder.data.setText("Publicado em: " + noticia.getPubDate().substring(0, 22));
         //salvando o link da noticia em um textview do viewholder que vai ser invisível
@@ -65,7 +64,7 @@ public class RssAdapter extends RecyclerView.Adapter <ItemRssViewHolder> {
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return noticias.get(i).hashCode();
     }
 
     @Override

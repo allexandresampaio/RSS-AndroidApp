@@ -2,6 +2,7 @@ package br.ufpe.cin.android.rss;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,8 @@ import androidx.preference.PreferenceManager;
 
 public class PrefsFragment extends PreferenceFragmentCompat {
     private ListPreference mListPreference;
-
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+    SharedPreferences.Editor editor = preferences.edit();
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferencias);
@@ -20,13 +22,10 @@ public class PrefsFragment extends PreferenceFragmentCompat {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        mListPreference = (ListPreference)  getPreferenceManager().findPreference("list_servicos");
+        mListPreference = (ListPreference)getPreferenceManager().findPreference("list_servicos");
         mListPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newValue) {
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-                SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("rssfeed", newValue.toString());
                 editor.apply();
                 return true;
