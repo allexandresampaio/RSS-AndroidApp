@@ -48,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mTopToolbar);
 
         //instanciando a recyclerview no contexto atual
-        conteudoRSS = new RecyclerView(this);
+        //conteudoRSS = new RecyclerView(this);
         //organizando o recyclerview
         //tamanho fixo
-        //conteudoRSS.setHasFixedSize(true);
+        conteudoRSS.setHasFixedSize(true);
         //estrutura vertical
         conteudoRSS.setLayoutManager(new LinearLayoutManager(this));
         //conteudoRSS.setAdapter(new RssAdapter(this, noticias));
-        //setContentView(conteudoRSS);
+        //  setContentView(conteudoRSS);
 
         //recuperando as informações de feed padrão via sharedPreferences
         //pegando do arquivo user_preferences
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                                     );
                                     conteudoRSS.setAdapter(adapter);
                                     //seta o conteúdo da view apenas após pegar o array de noticias
-                                    setContentView(conteudoRSS);
+                                    //setContentView(conteudoRSS);
                                 }
                         );
                     }
