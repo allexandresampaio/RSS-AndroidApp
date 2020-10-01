@@ -13,11 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class PreferenciasActivity extends AppCompatActivity {
+    private ListPreference listPreference;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferencias);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         PrefsFragment prefsFrag = new PrefsFragment();
         //Após criar o fragmento, use o código abaixo para exibir
         getSupportFragmentManager()

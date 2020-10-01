@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     //definindo a recyclerview
     RecyclerView conteudoRSS;
     List<Article> noticias;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         //recuperando as informações de feed padrão via sharedPreferences
         //pegando do arquivo user_preferences
-        SharedPreferences preferences = getSharedPreferences
+        preferences = getSharedPreferences
                 ("user_preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("feed1", getString(R.string.feed1));
@@ -111,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //urlFeed = preferences.getString("rssfeed", getString(R.string.feed_padrao));
         Parser p = new Parser.Builder().build();
         p.onFinish(
                 new OnTaskCompleted() {

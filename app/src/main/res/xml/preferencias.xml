@@ -7,6 +7,6 @@
     <ListPreference
         app:entries="@array/nomes_servicos_rss"
         app:entryValues="@array/entry_servicos_rss"
-        app:key="list_servicos"
-        app:title="Serviços de RSS" />
+        app:key="rssfeed"
+        app:title="Selecione" />
 </PreferenceScreen>

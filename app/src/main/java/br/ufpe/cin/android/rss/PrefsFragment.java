@@ -18,11 +18,11 @@ public class PrefsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferencias);
-        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        mListPreference = (ListPreference) getPreferenceManager().findPreference("list_servicos");
-        editor =  preferences.edit();
+        //preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        //mListPreference = getPreferenceManager().findPreference("list_servicos");
+        //editor =  preferences.edit();
     }
-
+/*
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mListPreference.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -34,5 +34,5 @@ public class PrefsFragment extends PreferenceFragmentCompat {
             }
         });
         return inflater.inflate(R.layout.activity_main, container, false);
-    }
+    }*/
 }
