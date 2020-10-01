@@ -13,16 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class PreferenciasActivity extends AppCompatActivity {
-    public static final String RSS_FEED = "feed_padrao";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferencias);
+        PrefsFragment prefsFrag = new PrefsFragment();
         //Após criar o fragmento, use o código abaixo para exibir
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.settings,new PrefsFragment())
+                .replace(R.id.settings,prefsFrag)
                 .commit();
     }
 }

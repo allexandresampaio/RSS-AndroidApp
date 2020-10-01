@@ -1,13 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:key="@+id/pref_screen">
     <PreferenceCategory
         app:title="Escolha o Serviço de RSS" />
-
     <ListPreference
-        app:key="list_servicos"
-        app:title="Serviços de RSS"
         app:entries="@array/nomes_servicos_rss"
-        app:entryValues="@array/entry_servicos_rss" />
-
+        app:entryValues="@array/entry_servicos_rss"
+        app:key="list_servicos"
+        app:title="Serviços de RSS" />
 </PreferenceScreen>
