@@ -63,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences
                 ("user_preferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("feed1", getString(R.string.feed1));
-        editor.putString("feed2", getString(R.string.feed2));
-        editor.putString("feed3", getString(R.string.feed3));
-        editor.apply();
+        //editor.putString("feed1", getString(R.string.feed1));
+        //editor.putString("feed2", getString(R.string.feed2));
+        //editor.putString("feed3", getString(R.string.feed3));
+        //editor.apply();
 
         //se existe a chave rssfeed no arquivo supramencionado,
         if(preferences.contains("rssfeed")){
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //urlFeed = preferences.getString("rssfeed", getString(R.string.feed_padrao));
+        urlFeed = preferences.getString("rssfeed", getString(R.string.feed_padrao));
         Parser p = new Parser.Builder().build();
         p.onFinish(
                 new OnTaskCompleted() {

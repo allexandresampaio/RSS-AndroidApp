@@ -6,18 +6,18 @@
 
     <string-array name="nomes_servicos_rss">
         <item>G1</item>
-        <item>CNN</item>
         <item>BBC</item>
+        <item>R7</item>
     </string-array>
 
     <string-array name="entry_servicos_rss">
         <item>https://g1.globo.com/dynamo/rss2.xml</item>
-        <item>https://g1.globo.com/dynamo/rss2.xml</item>
-        <item>https://g1.globo.com/dynamo/rss2.xml</item>
+        <item>http://www.bbc.co.uk/portuguese/index.xml</item>
+        <item>https://noticias.r7.com/feed.xml</item>
     </string-array>
 
     <string name="feed1">https://g1.globo.com/dynamo/rss2.xml</string>
-    <string name="feed2"></string>
-    <string name="feed3"></string>
+    <string name="feed2">http://www.bbc.co.uk/portuguese/index.xml</string>
+    <string name="feed3">https://noticias.r7.com/feed.xml</string>
 
 </resources>
