@@ -15,9 +15,6 @@ import android.view.ViewGroup;
 public class PreferenciasActivity extends AppCompatActivity {
     public static final String RSS_FEED = "rssfeed";
 
-    private ListPreference listPreference;
-    private SharedPreferences prefs;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

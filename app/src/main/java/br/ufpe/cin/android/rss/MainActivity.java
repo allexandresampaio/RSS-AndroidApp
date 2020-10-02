@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(PreferenciasActivity.RSS_FEED, "https://g1.globo.com/dynamo/rss2.xml");
+        editor.putString(PreferenciasActivity.RSS_FEED, getString(R.string.feed_padrao));
     }
 
     private String getRssFeed(String feed) throws IOException {
