@@ -126,7 +126,10 @@ public class MainActivity extends AppCompatActivity {
                                             getApplicationContext(),
                                             noticias
                                     );
+                                    //alterando a tela para mostrar o feed de noticias selecionado
                                     conteudoRSS.setAdapter(adapter);
+                                    //disparando a função que salva o feed no banco de dados
+                                    salvarNoticiasNoDB();
                                 }
                         );
                     }
@@ -141,9 +144,10 @@ public class MainActivity extends AppCompatActivity {
     }
     protected void onResume() {
         super.onResume();
+        //definindo um editor para gravar preferências
         SharedPreferences.Editor editor = preferences.edit();
+        //busca na tela qual a nova preferência de feed do usuario e salva como shared preference
         editor.putString(PreferenciasActivity.RSS_FEED, getString(R.string.feed_padrao));
-        editor.apply();
     }
 
     private String getRssFeed(String feed) throws IOException {
@@ -169,18 +173,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void salvarNoticiasNoDB(){
+        //inicia-se uma nova thread para salvar as noticias do feed no banco de dados de forma assíncrona
         new Thread(() -> {
+            //itera sobre o array de notícias para salvá-las uma a uma
             for (int i=0; i<noticias.size(); i++){
+                //separa cada item da notícia em uma variável
                 String link = noticias.get(i).getLink();
                 String titulo = noticias.get(i).getTitle();
                 String descricao = noticias.get(i).getDescription();
-                List<String> categorias = noticias.get(i).getCategories();
+                String categorias = noticias.get(i).getCategories().toString();
                 String data = noticias.get(i).getContent();
+                //instancia uma nova entidade de notícia
                 Noticia noticia = new Noticia(link, titulo, descricao, categorias, data);
+                //busca a instância atual de banco de dados
                 NoticiasDB bd = NoticiasDB.getInstance(this);
+                //busca a interfacec para manipulação do banco de dados
                 NoticiasDAO dao = bd.obterDAO();
+                //insere a notícia no banco de dados
                 dao.inserirNoticia(noticia);
-                finish();
             }
         }).start();
     }

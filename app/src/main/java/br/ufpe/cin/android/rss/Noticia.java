@@ -12,10 +12,10 @@ public class Noticia {
     String link;
     String titulo;
     String descricao;
-    List<String> categorias;
+    String categorias;
     String data;
 
-    public Noticia(@NonNull String link, String titulo, String descricao, List<String> categorias, String data) {
+    public Noticia(@NonNull String link, String titulo, String descricao, String categorias, String data) {
         this.link = link;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -48,11 +48,11 @@ public class Noticia {
         this.descricao = descricao;
     }
 
-    public List<String> getCategorias() {
+    public String getCategorias() {
         return categorias;
     }
 
-    public void setCategorias(List<String> categorias) {
+    public void setCategorias(String categorias) {
         this.categorias = categorias;
     }
 
