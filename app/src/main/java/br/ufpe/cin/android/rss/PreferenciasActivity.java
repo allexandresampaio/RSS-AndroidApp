@@ -1,16 +1,7 @@
 package br.ufpe.cin.android.rss;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.ListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
-
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 public class PreferenciasActivity extends AppCompatActivity {
     //essa variável será utilizada na main ativity para ser guardada como a shared preference do usuário

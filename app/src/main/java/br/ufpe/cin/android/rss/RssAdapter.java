@@ -1,21 +1,14 @@
 package br.ufpe.cin.android.rss;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.prof.rssparser.Article;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
-
-import static br.ufpe.cin.android.rss.R.layout.linha;
 
 public class RssAdapter extends RecyclerView.Adapter <ItemRssViewHolder> {
     List<Article> noticias;
