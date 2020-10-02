@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(PreferenciasActivity.RSS_FEED, getString(R.string.feed_padrao));
+        editor.apply();
     }
 
     private String getRssFeed(String feed) throws IOException {
