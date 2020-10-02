@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class PreferenciasActivity extends AppCompatActivity {
+    public static final String RSS_FEED = "rssfeed";
+
     private ListPreference listPreference;
     private SharedPreferences prefs;
 
@@ -20,7 +22,7 @@ public class PreferenciasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preferencias);
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //prefs = PreferenceManager.getDefaultSharedPreferences(this);
         PrefsFragment prefsFrag = new PrefsFragment();
         //Após criar o fragmento, use o código abaixo para exibir
         getSupportFragmentManager()

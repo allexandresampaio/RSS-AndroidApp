@@ -6,14 +6,18 @@
 
     <string-array name="nomes_servicos_rss">
         <item>G1</item>
-        <item>BBC</item>
-        <item>R7</item>
+        <item>Folha</item>
+        <item>Gazeta</item>
+        <item>Câmara</item>
+        <item>STJ</item>
     </string-array>
 
     <string-array name="entry_servicos_rss">
         <item>https://g1.globo.com/dynamo/rss2.xml</item>
-        <item>http://www.bbc.co.uk/portuguese/index.xml</item>
-        <item>https://noticias.r7.com/feed.xml</item>
+        <item>https://feeds.folha.uol.com.br/emcimadahora/rss091.xml</item>
+        <item>https://www.gazetadopovo.com.br/feed/rss/mundo.xml</item>
+        <item>https://www.camara.leg.br/noticias/rss/ultimas-noticias</item>
+        <item>https://res.stj.jus.br/hrestp-c-portalp/RSS.xml</item>
     </string-array>
 
     <string name="feed1">https://g1.globo.com/dynamo/rss2.xml</string>

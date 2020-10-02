@@ -3,21 +3,15 @@ package br.ufpe.cin.android.rss;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-
 import com.prof.rssparser.Article;
 import com.prof.rssparser.Channel;
 import com.prof.rssparser.OnTaskCompleted;
@@ -38,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     //definindo a recyclerview
     RecyclerView conteudoRSS;
     List<Article> noticias;
-    SharedPreferences preferences;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +54,15 @@ public class MainActivity extends AppCompatActivity {
 
         //recuperando as informações de feed padrão via sharedPreferences
         //pegando do arquivo user_preferences
-        preferences = getSharedPreferences
-                ("user_preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //SharedPreferences.Editor editor = preferences.edit();
+        //urlFeed = preferences.getString(RSS_FEED, getString(R.string.feed_padrao));
         //editor.putString("feed1", getString(R.string.feed1));
         //editor.putString("feed2", getString(R.string.feed2));
         //editor.putString("feed3", getString(R.string.feed3));
         //editor.apply();
-
+/*
         //se existe a chave rssfeed no arquivo supramencionado,
         if(preferences.contains("rssfeed")){
             //urlFeed vai receber esse valor ou o feed padrao definido no xml
@@ -85,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         //pega o valor na string cuja chave é a definida em Preferencias Activity -> RSS_FEED e coloca em urlFeed
         //se nao tiver nada salvo, ele cria e seta com o segundo argumento
         //urlFeed = prefs.toString();
-
+*/
     }
 
     @Override
@@ -112,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        urlFeed = preferences.getString("rssfeed", getString(R.string.feed_padrao));
+        urlFeed = preferences.getString(PreferenciasActivity.RSS_FEED, getString(R.string.feed_padrao));
         Parser p = new Parser.Builder().build();
         p.onFinish(
                 new OnTaskCompleted() {
@@ -142,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
     }
     protected void onResume() {
         super.onResume();
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(PreferenciasActivity.RSS_FEED, "https://g1.globo.com/dynamo/rss2.xml");
     }
 
     private String getRssFeed(String feed) throws IOException {
