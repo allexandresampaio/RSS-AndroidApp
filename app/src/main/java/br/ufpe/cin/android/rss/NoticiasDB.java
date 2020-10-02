@@ -8,7 +8,9 @@ import androidx.room.RoomDatabase;
 
 @Database(entities={Noticia.class}, version = 1)
 public abstract class NoticiasDB extends RoomDatabase {
+    //definindo o nome do banco de dados a ser criado
     private static final String DB_NAME = "noticias.db";
+    //instanciando uma interface de manipulação de notícias
     abstract NoticiasDAO obterDAO();
 
     private static volatile NoticiasDB INSTANCE;

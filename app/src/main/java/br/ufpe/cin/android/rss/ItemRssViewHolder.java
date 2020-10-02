@@ -9,16 +9,16 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 //o holder guarda as referências para os objetos
 public class ItemRssViewHolder extends RecyclerView.ViewHolder {
-    TextView titulo = null;
     //criando novas variáveis para armazenar os dados novos de exibição na tela
+    TextView titulo = null;
     ImageView image = null;
     TextView data = null;
     TextView url = null;
 
     public ItemRssViewHolder(View itemCard) {
         super(itemCard);
-        this.titulo = itemCard.findViewById(R.id.titulo);
         //novos campos do construtor, buscando as referências
+        this.titulo = itemCard.findViewById(R.id.titulo);
         this.image = itemCard.findViewById(R.id.imagem);
         this.data = itemCard.findViewById(R.id.dataPublicacao);
         this.url = itemCard.findViewById(R.id.url);

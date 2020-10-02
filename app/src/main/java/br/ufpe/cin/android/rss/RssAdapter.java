@@ -21,9 +21,8 @@ public class RssAdapter extends RecyclerView.Adapter <ItemRssViewHolder> {
     List<Article> noticias;
     Context context;
 
-    //como nesse Adapter o contexto não estava sendo identificado automaticamente
-    //foi preciso invocar e definir o contexto de forma explícita pelo construtor
-    //para usá-lo nas demais funções
+    //adapter criado para tratar os dados trazidos da activity principal e
+    //separar as notícias em seus repectivos campos na tela de feed
     public RssAdapter(Context c, List<Article> noticias) {
         this.noticias = noticias;
         this.context = c;
@@ -40,14 +39,18 @@ public class RssAdapter extends RecyclerView.Adapter <ItemRssViewHolder> {
     @NonNull
     @Override
     public ItemRssViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //criando um inflater para exibir novos itens
         LayoutInflater inflater = LayoutInflater.from(context);
+        //inflando o layout definido em linha.xml (cards)
         View v = inflater.inflate(R.layout.linha, parent, false);
+        //criando um viewholdedr, que usará as informações exibidas na tela para executar ações no app
         ItemRssViewHolder viewHolder = new ItemRssViewHolder(v);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemRssViewHolder viewHolder, int i) {
+        //criando um novo Article com os dados da notícia do xml
         Article noticia = noticias.get(i);
         //definindo os campos a serem exibidos na tela: titulo, imagem e data da publicação
         viewHolder.titulo.setText(noticia.getTitle());

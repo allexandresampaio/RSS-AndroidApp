@@ -13,15 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class PreferenciasActivity extends AppCompatActivity {
+    //essa variável será utilizada na main ativity para ser guardada como a shared preference do usuário
+    //ela identifica o que está sendo selecionado na tela e altera esse valor automaticamente
     public static final String RSS_FEED = "rssfeed";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //quando a activity é criada, o layout activity_preferências é exibido
         setContentView(R.layout.activity_preferencias);
-        //prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //um novo fragmento é criado, do tipo PrefsFragment
         PrefsFragment prefsFrag = new PrefsFragment();
-        //Após criar o fragmento, use o código abaixo para exibir
+        //o campo identificado por "settings" no layout, será substituído pelo fragmento definido anteriormente
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.settings,prefsFrag)

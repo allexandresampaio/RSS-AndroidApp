@@ -32,80 +32,51 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    //private final String RSS_FEED = "https://g1.globo.com/dynamo/rss2.xml";
     private String urlFeed;
+    //criando variável para manipular a toolbar do app
     private Toolbar mTopToolbar;
-    //definindo a recyclerview
+    //definindo a recyclerview para incluir os cards com as notícias do feed
     RecyclerView conteudoRSS;
+    //criando uma lista de notícias para guardar cada item capturado do XML
     List<Article> noticias;
+    //definindo instância para manipulação das preferências do usuário
     private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //definindo o layout inicial da aplicação
         setContentView(R.layout.activity_main);
+        //buscando o widget onde deve ser incluído o feed
         conteudoRSS = findViewById(R.id.conteudoRSS);
+        //buscando o widget referente à toolbar
         mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mTopToolbar);
-
-        //instanciando a recyclerview no contexto atual
-        //conteudoRSS = new RecyclerView(this);
-        //organizando o recyclerview
-        //tamanho fixo
+        //organizando o recyclerview em tamanho fixo e estrutura vertical
         conteudoRSS.setHasFixedSize(true);
-        //estrutura vertical
         conteudoRSS.setLayoutManager(new LinearLayoutManager(this));
-        //conteudoRSS.setAdapter(new RssAdapter(this, noticias));
-        //  setContentView(conteudoRSS);
-
-        //recuperando as informações de feed padrão via sharedPreferences
-        //pegando do arquivo user_preferences
+        //pegando o arquivo padrão de preferências do usuário armazenado para ser manipulado
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        //preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        //SharedPreferences.Editor editor = preferences.edit();
-        //urlFeed = preferences.getString(RSS_FEED, getString(R.string.feed_padrao));
-        //editor.putString("feed1", getString(R.string.feed1));
-        //editor.putString("feed2", getString(R.string.feed2));
-        //editor.putString("feed3", getString(R.string.feed3));
-        //editor.apply();
-/*
-        //se existe a chave rssfeed no arquivo supramencionado,
-        if(preferences.contains("rssfeed")){
-            //urlFeed vai receber esse valor ou o feed padrao definido no xml
-            urlFeed = preferences.getString("rssfeed", getString(R.string.feed_padrao));
-        } else {//se não houver essa chave
-            //coloca-se o valor definido no xml como feed padrao na chave rssfeed
-            editor.putString("rssfeed", getString(R.string.feed_padrao));
-            editor.apply();
-            //urlFeed vai receber esse valor ou o feed padrao definido no xml
-            urlFeed = preferences.getString("rssfeed", getString(R.string.feed_padrao));
-        }
-        //prefs = getSharedPreferences(getString(R.string.feed_padrao), MODE_PRIVATE);
-        //instanciando a minha prefs
-        //prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        //pega o valor na string cuja chave é a definida em Preferencias Activity -> RSS_FEED e coloca em urlFeed
-        //se nao tiver nada salvo, ele cria e seta com o segundo argumento
-        //urlFeed = prefs.toString();
-*/
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        //inflando o botão na toolbar para ser usado como ponto de acesso das preferências
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //definindo o que ocorre ao ser selecionada uma das opções da lista exibida ao clicar no botão da toolbar
+        //como só há uma opção, a iteração ocorrerá apenas sobre ela
+        //caso a opção selecionada seja o botão com o id action_settings...
         if (item.getItemId() == R.id.action_settings) {
-            // User chose the "Settings" item, show the app settings UI...
-            startActivity(new Intent(
-                    this, PreferenciasActivity.class));
+            //iniciará uma nova Activity por meio de um intent que exibirá a tela de configurações
+            startActivity(new Intent(this, PreferenciasActivity.class));
             return true;
         } else {
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
+                //caso algo dê errado, a superclasse deverá tomar conta
                 return super.onOptionsItemSelected(item);
         }
     }
@@ -113,20 +84,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //busca nas preferências do usuário qual a url definida para o feed e salva na variável
+        //em caso negativo, exibirá o feed padrão do G1, indicado no arquivo de values - strings
         urlFeed = preferences.getString(PreferenciasActivity.RSS_FEED, getString(R.string.feed_padrao));
         Parser p = new Parser.Builder().build();
         p.onFinish(
                 new OnTaskCompleted() {
                     @Override
                     public void onTaskCompleted(Channel channel) {
+                        //após o parsing da URL, salva na lista de notícias cada notícia extraída do xml
                         noticias = channel.getArticles();
+                        //abre uma thread para criar um novo adapter e entregar a ele a lista de notícias
                         runOnUiThread(
                                 () -> {
                                     RssAdapter adapter = new RssAdapter(
                                             getApplicationContext(),
                                             noticias
                                     );
-                                    //alterando a tela para mostrar o feed de noticias selecionado
+                                    //alterando o widget da tela para mostrar o feed de noticias selecionado
                                     conteudoRSS.setAdapter(adapter);
                                     //disparando a função que salva o feed no banco de dados
                                     salvarNoticiasNoDB();
@@ -142,34 +117,15 @@ public class MainActivity extends AppCompatActivity {
         //pegando o valor passado na SharedPreference pra usar na execução
         p.execute(urlFeed);
     }
+
     protected void onResume() {
+        //quando a activity é iniciada por meio de um retorno à tela principal
+        //por exemplo, quando o usuário volta da tela de preferências para a tela principal
         super.onResume();
         //definindo um editor para gravar preferências
         SharedPreferences.Editor editor = preferences.edit();
-        //busca na tela qual a nova preferência de feed do usuario e salva como shared preference
+        //busca na activity que manipula a tela de preferências o valor definido para o feed do usuario e salva como shared preference
         editor.putString(PreferenciasActivity.RSS_FEED, getString(R.string.feed_padrao));
-    }
-
-    private String getRssFeed(String feed) throws IOException {
-        InputStream in = null;
-        String rssFeed;
-        try {
-            URL url = new URL(feed);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            in = conn.getInputStream();
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            for (int count; (count = in.read(buffer)) != -1; ) {
-                out.write(buffer, 0, count);
-            }
-            byte[] response = out.toByteArray();
-            rssFeed = new String(response, StandardCharsets.UTF_8);
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-        }
-        return rssFeed;
     }
 
     private void salvarNoticiasNoDB(){
