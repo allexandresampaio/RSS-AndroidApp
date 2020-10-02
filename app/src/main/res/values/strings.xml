@@ -20,8 +20,4 @@
         <item>https://res.stj.jus.br/hrestp-c-portalp/RSS.xml</item>
     </string-array>
 
-    <string name="feed1">https://g1.globo.com/dynamo/rss2.xml</string>
-    <string name="feed2">http://www.bbc.co.uk/portuguese/index.xml</string>
-    <string name="feed3">https://noticias.r7.com/feed.xml</string>
-
 </resources>

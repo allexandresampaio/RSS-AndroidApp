@@ -4,15 +4,7 @@
     app:key="@+id/pref_screen">
     <PreferenceCategory
         app:title="Escolha o Serviço de RSS" />
-    <!--
-        <EditTextPreference
-            app:title="Feed de RSS"
-            app:dialogTitle="Alterar o Feed de RSS"
-            app:dialogMessage="Digite aqui a URL do novo Feed de RSS"
-            app:key="rssfeed"
-            app:positiveButtonText="Alterar"
-            app:negaButtonText="Cancelar"/>
-    -->
+
         <ListPreference
             app:entries="@array/nomes_servicos_rss"
             app:entryValues="@array/entry_servicos_rss"
