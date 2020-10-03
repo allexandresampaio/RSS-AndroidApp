@@ -1,6 +1,6 @@
 <resources>
     <string name="action_settings">Escolher Serviço de RSS</string>
-    <string name="app_name">RSS</string>
+    <string name="app_name">Meu Feed</string>
     <string name="configurar">Configurar</string>
     <string name="feed_padrao">https://g1.globo.com/dynamo/rss2.xml</string>
 
