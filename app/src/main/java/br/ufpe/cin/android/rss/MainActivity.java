@@ -4,12 +4,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.prof.rssparser.Article;
 import com.prof.rssparser.Channel;
 import com.prof.rssparser.OnTaskCompleted;
@@ -90,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
                                     conteudoRSS.setAdapter(adapter);
                                     //disparando a função que salva o feed no banco de dados
                                     salvarNoticiasNoDB();
+                                    //exibe um toast para avisar o usuário da atualização do feed
+                                    notificarUsuario("Feed atualizado!");
                                 }
                         );
                     }
@@ -134,6 +139,12 @@ public class MainActivity extends AppCompatActivity {
                 dao.inserirNoticia(noticia);
             }
         }).start();
+    }
+
+    private void notificarUsuario(CharSequence text){
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(this, text, duration);
+        toast.show();
     }
 
 }
