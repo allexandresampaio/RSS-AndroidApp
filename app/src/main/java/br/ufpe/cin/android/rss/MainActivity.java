@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //buscando o widget onde deve ser incluído o feed
         conteudoRSS = findViewById(R.id.conteudoRSS);
-        //buscando o widget referente à toolbar
-        mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mTopToolbar);
         //organizando o recyclerview em tamanho fixo e estrutura vertical
         conteudoRSS.setHasFixedSize(true);
         conteudoRSS.setLayoutManager(new LinearLayoutManager(this));
